@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIC — Catatan Informasi Kuliah</title>
+  <meta name="description" content="CIC: rangkuman mata kuliah, jadwal zoom, dan hitung mundur UTS/UAS." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <span class="brand-mark">&gt;_</span>
+        <h1>CIC</h1>
+        <span class="brand-sub">Catatan Informasi Kuliah</span>
+      </div>
+      <div class="auth-area">
+        <span id="user-info" class="user-info"></span>
+        <button id="btn-write" class="btn btn-primary hidden">+ Tulis Rangkuman</button>
+        <button id="btn-auth" class="btn">Masuk Kontributor</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- Countdown UTS/UAS -->
+    <section id="countdown" class="card countdown-card">
+      <p class="label">// hitung mundur</p>
+      <h2 id="cd-title">Memuat...</h2>
+      <div id="cd-timer" class="cd-timer">
+        <div class="cd-box"><span id="cd-days">-</span><small>hari</small></div>
+        <div class="cd-box"><span id="cd-hours">-</span><small>jam</small></div>
+        <div class="cd-box"><span id="cd-mins">-</span><small>menit</small></div>
+        <div class="cd-box"><span id="cd-secs">-</span><small>detik</small></div>
+      </div>
+    </section>
+
+    <!-- Jadwal zoom / deadline -->
+    <section class="card">
+      <p class="label">// jadwal terdekat</p>
+      <h2>Jadwal &amp; Zoom</h2>
+      <ul id="jadwal-list" class="item-list"></ul>
+    </section>
+
+    <!-- Rangkuman -->
+    <section class="card">
+      <p class="label">// arsip catatan</p>
+      <h2>Rangkuman Mata Kuliah</h2>
+      <input id="search" class="search" type="search" placeholder="cari mata kuliah / judul / isi..." />
+      <div id="rangkuman-list" class="rangkuman-list"></div>
+    </section>
+
+    <footer class="site-footer">
+      <p>CIC &copy; 2026 — dibuat oleh mahasiswa, untuk mahasiswa. Konten dikurasi kontributor.</p>
+    </footer>
+  </main>
+
+  <!-- Modal: Login -->
+  <dialog id="login-modal" class="modal">
+    <form id="login-form" method="dialog" class="modal-form">
+      <h3>Masuk Kontributor</h3>
+      <p class="muted">Khusus kontributor. Pembaca gak perlu login.</p>
+      <label>Email <input type="email" id="login-email" required /></label>
+      <label>Password <input type="password" id="login-pass" required /></label>
+      <p id="login-error" class="error"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn" data-close>Batal</button>
+        <button type="submit" class="btn btn-primary">Masuk</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Modal: Tulis Rangkuman -->
+  <dialog id="post-modal" class="modal">
+    <form id="post-form" method="dialog" class="modal-form">
+      <h3>Tulis Rangkuman</h3>
+      <label>Judul <input type="text" id="post-judul" required maxlength="120" /></label>
+      <label>Mata Kuliah <input type="text" id="post-mk" list="mk-list" required placeholder="contoh: Struktur Data" />
+        <datalist id="mk-list"></datalist>
+      </label>
+      <label>Isi Rangkuman <textarea id="post-isi" rows="10" required placeholder="tulis di sini... teks doang, format bebas"></textarea></label>
+      <label>Foto tabel/diagram (opsional, maks 400KB)
+        <input type="file" id="post-gambar" accept="image/*" />
+      </label>
+      <p id="post-error" class="error"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn" data-close>Batal</button>
+        <button type="submit" class="btn btn-primary">Publikasikan</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
